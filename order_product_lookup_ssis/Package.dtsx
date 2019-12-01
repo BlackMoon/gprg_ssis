@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{512F72F4-4560-4EAF-A841-4217D4240499}">
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{03490CB2-FBB7-4318-96A0-31E87AC96454}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -164,14 +164,16 @@
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[Summary]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        SalesOrderId, ProductNumber
+FROM            Summary</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[Summary]) [refTable]
-where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[TerritoryId] = ? and [refTable].[ProductNumber] = ? and [refTable].[ProductCategory] = ? and [refTable].[ProductName] = ? and [refTable].[OrderDate] = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT        SalesOrderId, ProductNumber
+FROM            Summary) [refTable]
+where [refTable].[ProductNumber] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -202,12 +204,12 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SalesOrderId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OrderDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductNumber" dataType="DT_WSTR" length="25" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductCategory" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OrderQty" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="UnitPrice" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Total" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TerritoryId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SalesOrderId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductNumber" dataType="DT_WSTR" length="25" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output].Columns[UnitPrice]};#{Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output].Columns[OrderQty]};#{Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output].Columns[TerritoryID]};#{Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output].Columns[ProductNumber]};#{Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output].Columns[ProductCategory]};#{Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output].Columns[ProductName]};#{Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output].Columns[OrderDate]};</property>
+                  name="ParameterMap">#{Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output].Columns[ProductNumber]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -231,22 +233,6 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load Orders+Products\Lookup.Inputs[Lookup Input].Columns[TerritoryID]"
-                      cachedDataType="i4"
-                      cachedName="TerritoryID"
-                      lineageId="Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output].Columns[TerritoryID]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">TerritoryId</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\Load Orders+Products\Lookup.Inputs[Lookup Input].Columns[ProductNumber]"
                       cachedDataType="wstr"
                       cachedLength="25"
@@ -257,88 +243,6 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
                           name="JoinToReferenceColumn">ProductNumber</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Load Orders+Products\Lookup.Inputs[Lookup Input].Columns[ProductCategory]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="ProductCategory"
-                      lineageId="Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output].Columns[ProductCategory]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">ProductCategory</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Load Orders+Products\Lookup.Inputs[Lookup Input].Columns[ProductName]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="ProductName"
-                      lineageId="Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output].Columns[ProductName]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">ProductName</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Load Orders+Products\Lookup.Inputs[Lookup Input].Columns[OrderDate]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="OrderDate"
-                      lineageId="Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output].Columns[OrderDate]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">OrderDate</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Load Orders+Products\Lookup.Inputs[Lookup Input].Columns[UnitPrice]"
-                      cachedDataType="cy"
-                      cachedName="UnitPrice"
-                      lineageId="Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output].Columns[UnitPrice]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">UnitPrice</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Load Orders+Products\Lookup.Inputs[Lookup Input].Columns[OrderQty]"
-                      cachedDataType="i2"
-                      cachedName="OrderQty"
-                      lineageId="Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output].Columns[OrderQty]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">OrderQty</property>
                         <property
                           dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
@@ -3695,12 +3599,12 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
               name="Merge Join Output"
               startId="Package\Load Orders+Products\Merge Join 1.Outputs[Merge Join Output]" />
             <path
-              refId="Package\Load Orders+Products.Paths[Merge Join Output2]"
+              refId="Package\Load Orders+Products.Paths[Merge Join Output1]"
               endId="Package\Load Orders+Products\Sort 3.Inputs[Sort Input]"
               name="Merge Join Output"
               startId="Package\Load Orders+Products\Merge Join.Outputs[Merge Join Output]" />
             <path
-              refId="Package\Load Orders+Products.Paths[Merge Join Output1]"
+              refId="Package\Load Orders+Products.Paths[Merge Join Output2]"
               endId="Package\Load Orders+Products\Sort 7.Inputs[Sort Input]"
               name="Merge Join Output"
               startId="Package\Load Orders+Products\Merge Join 2.Outputs[Merge Join Output]" />
@@ -3710,67 +3614,67 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
               name="Merge Join Output"
               startId="Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output]" />
             <path
-              refId="Package\Load Orders+Products.Paths[OLE DB Source Output]"
-              endId="Package\Load Orders+Products\Sort 6.Inputs[Sort Input]"
+              refId="Package\Load Orders+Products.Paths[OLE DB Source Output4]"
+              endId="Package\Load Orders+Products\Sort 1.Inputs[Sort Input]"
               name="OLE DB Source Output"
-              startId="Package\Load Orders+Products\SalesOrderHeader.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Load Orders+Products.Paths[OLE DB Source Output1]"
-              endId="Package\Load Orders+Products\Sort 2.Inputs[Sort Input]"
-              name="OLE DB Source Output"
-              startId="Package\Load Orders+Products\Product.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Load Orders+Products.Paths[OLE DB Source Output2]"
-              endId="Package\Load Orders+Products\Sort 5.Inputs[Sort Input]"
-              name="OLE DB Source Output"
-              startId="Package\Load Orders+Products\SalesOrderDetail.Outputs[OLE DB Source Output]" />
+              startId="Package\Load Orders+Products\ProductSubCategory.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Load Orders+Products.Paths[OLE DB Source Output3]"
               endId="Package\Load Orders+Products\Sort.Inputs[Sort Input]"
               name="OLE DB Source Output"
               startId="Package\Load Orders+Products\ProductCategory.Outputs[OLE DB Source Output]" />
             <path
-              refId="Package\Load Orders+Products.Paths[OLE DB Source Output4]"
-              endId="Package\Load Orders+Products\Sort 1.Inputs[Sort Input]"
+              refId="Package\Load Orders+Products.Paths[OLE DB Source Output2]"
+              endId="Package\Load Orders+Products\Sort 5.Inputs[Sort Input]"
               name="OLE DB Source Output"
-              startId="Package\Load Orders+Products\ProductSubCategory.Outputs[OLE DB Source Output]" />
+              startId="Package\Load Orders+Products\SalesOrderDetail.Outputs[OLE DB Source Output]" />
             <path
-              refId="Package\Load Orders+Products.Paths[Sort Output1]"
+              refId="Package\Load Orders+Products.Paths[OLE DB Source Output1]"
+              endId="Package\Load Orders+Products\Sort 2.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Orders+Products\Product.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load Orders+Products.Paths[OLE DB Source Output]"
+              endId="Package\Load Orders+Products\Sort 6.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Orders+Products\SalesOrderHeader.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load Orders+Products.Paths[Sort Output]"
               endId="Package\Load Orders+Products\Merge Join 3.Inputs[Merge Join Left Input]"
               name="Sort Output"
               startId="Package\Load Orders+Products\Sort 4.Outputs[Sort Output]" />
             <path
-              refId="Package\Load Orders+Products.Paths[Sort Output2]"
+              refId="Package\Load Orders+Products.Paths[Sort Output1]"
               endId="Package\Load Orders+Products\Merge Join.Inputs[Merge Join Left Input]"
               name="Sort Output"
               startId="Package\Load Orders+Products\Sort.Outputs[Sort Output]" />
             <path
-              refId="Package\Load Orders+Products.Paths[Sort Output3]"
+              refId="Package\Load Orders+Products.Paths[Sort Output2]"
               endId="Package\Load Orders+Products\Merge Join 1.Inputs[Merge Join Left Input]"
               name="Sort Output"
               startId="Package\Load Orders+Products\Sort 3.Outputs[Sort Output]" />
             <path
-              refId="Package\Load Orders+Products.Paths[Sort Output4]"
+              refId="Package\Load Orders+Products.Paths[Sort Output3]"
               endId="Package\Load Orders+Products\Merge Join 1.Inputs[Merge Join Right Input]"
               name="Sort Output"
               startId="Package\Load Orders+Products\Sort 2.Outputs[Sort Output]" />
             <path
-              refId="Package\Load Orders+Products.Paths[Sort Output5]"
+              refId="Package\Load Orders+Products.Paths[Sort Output4]"
               endId="Package\Load Orders+Products\Merge Join.Inputs[Merge Join Right Input]"
               name="Sort Output"
               startId="Package\Load Orders+Products\Sort 1.Outputs[Sort Output]" />
             <path
-              refId="Package\Load Orders+Products.Paths[Sort Output6]"
+              refId="Package\Load Orders+Products.Paths[Sort Output5]"
               endId="Package\Load Orders+Products\Merge Join 2.Inputs[Merge Join Left Input]"
               name="Sort Output"
               startId="Package\Load Orders+Products\Sort 5.Outputs[Sort Output]" />
             <path
-              refId="Package\Load Orders+Products.Paths[Sort Output7]"
+              refId="Package\Load Orders+Products.Paths[Sort Output6]"
               endId="Package\Load Orders+Products\Merge Join 3.Inputs[Merge Join Right Input]"
               name="Sort Output"
               startId="Package\Load Orders+Products\Sort 7.Outputs[Sort Output]" />
             <path
-              refId="Package\Load Orders+Products.Paths[Sort Output]"
+              refId="Package\Load Orders+Products.Paths[Sort Output7]"
               endId="Package\Load Orders+Products\Merge Join 2.Inputs[Merge Join Right Input]"
               name="Sort Output"
               startId="Package\Load Orders+Products\Sort 6.Outputs[Sort Output]" />
@@ -3805,222 +3709,50 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:s="clr-namespace:System;assembly=mscorlib">
         <NodeLayout
           Size="108,42"
-          Id="Package\Load Orders+Products\Sort 4"
-          TopLeft="359.444444444444,294.333333333333" />
-        <NodeLayout
-          Size="142,42"
-          Id="Package\Load Orders+Products\Merge Join 1"
-          TopLeft="338,218.888888888889" />
-        <NodeLayout
-          Size="108,42"
-          Id="Package\Load Orders+Products\Sort 7"
-          TopLeft="846,106" />
-        <NodeLayout
-          Size="126,42"
-          Id="Package\Load Orders+Products\Summary"
-          TopLeft="296.666666666667,515" />
-        <NodeLayout
-          Size="108,42"
-          Id="Package\Load Orders+Products\Sort 2"
-          TopLeft="653,100" />
-        <NodeLayout
-          Size="108,42"
           Id="Package\Load Orders+Products\Sort 3"
           TopLeft="329.111111111111,87" />
+        <NodeLayout
+          Size="115,42"
+          Id="Package\Load Orders+Products\Lookup"
+          TopLeft="556,513" />
         <NodeLayout
           Size="142,42"
           Id="Package\Load Orders+Products\Merge Join 3"
           TopLeft="538.888888888889,365.555555555556" />
         <NodeLayout
-          Size="152,42"
-          Id="Package\Load Orders+Products\Calculate Total"
-          TopLeft="538.055555555556,443.694444444444" />
+          Size="108,42"
+          Id="Package\Load Orders+Products\Sort 7"
+          TopLeft="846,106" />
+        <NodeLayout
+          Size="108,42"
+          Id="Package\Load Orders+Products\Sort 4"
+          TopLeft="359.444444444444,294.333333333333" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Load Orders+Products\OLE DB Command"
+          TopLeft="777,516" />
+        <NodeLayout
+          Size="108,42"
+          Id="Package\Load Orders+Products\Sort 2"
+          TopLeft="653,100" />
         <NodeLayout
           Size="117,42"
           Id="Package\Load Orders+Products\Product"
           TopLeft="648.333333333333,10" />
+        <NodeLayout
+          Size="126,42"
+          Id="Package\Load Orders+Products\Summary"
+          TopLeft="296.666666666667,515" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Load Orders+Products\Calculate Total"
+          TopLeft="538.055555555556,443.694444444444" />
+        <NodeLayout
+          Size="142,42"
+          Id="Package\Load Orders+Products\Merge Join 1"
+          TopLeft="338,218.888888888889" />
         <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Sort Output1]"
-          TopLeft="413.444444444444,336.333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="174.111111111111,29.2222222222222"
-              Start="0,0"
-              End="174.111111111111,21.7222222222222">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,13.3379758588672" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,13.3379758588672"
-                    Point2="0,17.3379758588672"
-                    Point3="4,17.3379758588672" />
-                  <mssgle:LineSegment
-                    End="170.111111111111,17.3379758588672" />
-                  <mssgle:CubicBezierSegment
-                    Point1="170.111111111111,17.3379758588672"
-                    Point2="174.111111111111,17.3379758588672"
-                    Point3="174.111111111111,21.3379758588672" />
-                  <mssgle:LineSegment
-                    End="174.111111111111,21.7222222222222" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="66.2054383680555,22.3379758588672,41.700234375,9.5732421875"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[OLE DB Source Output1]"
-          TopLeft="706.916666666667,52">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48"
-              Start="0,0"
-              End="0,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-20.81349609375,15.4658203125,41.6269921875,9.568359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Merge Join Output3]"
-          TopLeft="611.972222222222,407.555555555556">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,36.1388888888889"
-              Start="0,0"
-              End="0,28.6388888888889">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,28.6388888888889" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-27.99357421875,8.69786241319445,55.9871484375,11.2431640625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Merge Join Output2]"
-          TopLeft="320,48.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="63.111111111111,38.5"
-              Start="0,0"
-              End="63.111111111111,31">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,15.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15.25"
-                    Point2="0,19.25"
-                    Point3="4,19.25" />
-                  <mssgle:LineSegment
-                    End="59.111111111111,19.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="59.111111111111,19.25"
-                    Point2="63.111111111111,19.25"
-                    Point3="63.111111111111,23.25" />
-                  <mssgle:LineSegment
-                    End="63.111111111111,31" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="13.4061414930555,24.25,36.298828125,9.5732421875"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Merge Join Output1]"
-          TopLeft="1076.61111111111,49.6111111111111">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-176.611111111111,56.3888888888889"
-              Start="0,0"
-              End="-176.611111111111,48.8888888888889">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24.1944444444444" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,24.1944444444444"
-                    Point2="0,28.1944444444444"
-                    Point3="-4,28.1944444444444" />
-                  <mssgle:LineSegment
-                    End="-172.611111111111,28.1944444444444" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-172.611111111111,28.1944444444444"
-                    Point2="-176.611111111111,28.1944444444444"
-                    Point3="-176.611111111111,32.1944444444444" />
-                  <mssgle:LineSegment
-                    End="-176.611111111111,48.8888888888889" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-118.575028211805,33.1944444444444,60.5389453125,11.228515625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Merge Join Output]"
-          TopLeft="411.222222222222,260.888888888889">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,33.4444444444444"
-              Start="0,0"
-              End="0,25.9444444444444">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.9444444444444" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-20.8501171875,8.1856011284722,41.700234375,9.5732421875"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Sort Output7]"
+          Id="Package\Load Orders+Products.Paths[Sort Output6]"
           TopLeft="900,148">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4050,13 +3782,11 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-161.772599826389,134.078922934076,55.767421875,11.2431640625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Sort Output4]"
+          Id="Package\Load Orders+Products.Paths[Sort Output3]"
           TopLeft="707,142">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4086,13 +3816,11 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-158.646829427084,50.619312906221,41.6269921875,9.568359375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Sort Output3]"
+          Id="Package\Load Orders+Products.Paths[Sort Output2]"
           TopLeft="384.888888888889,129">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4110,9 +3838,245 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Orders+Products.Paths[Sort Output]"
+          TopLeft="413.444444444444,336.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="174.111111111111,29.2222222222222"
+              Start="0,0"
+              End="174.111111111111,21.7222222222222">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.3379758588672" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.3379758588672"
+                    Point2="0,17.3379758588672"
+                    Point3="4,17.3379758588672" />
+                  <mssgle:LineSegment
+                    End="170.111111111111,17.3379758588672" />
+                  <mssgle:CubicBezierSegment
+                    Point1="170.111111111111,17.3379758588672"
+                    Point2="174.111111111111,17.3379758588672"
+                    Point3="174.111111111111,21.3379758588672" />
+                  <mssgle:LineSegment
+                    End="174.111111111111,21.7222222222222" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Orders+Products.Paths[OLE DB Source Output1]"
+          TopLeft="706.916666666667,52">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Orders+Products.Paths[Merge Join Output3]"
+          TopLeft="611.972222222222,407.555555555556">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.1388888888889"
+              Start="0,0"
+              End="0,28.6388888888889">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.6388888888889" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Orders+Products.Paths[Merge Join Output2]"
+          TopLeft="1076.61111111111,49.6111111111111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-176.611111111111,56.3888888888889"
+              Start="0,0"
+              End="-176.611111111111,48.8888888888889">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.1944444444444" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.1944444444444"
+                    Point2="0,28.1944444444444"
+                    Point3="-4,28.1944444444444" />
+                  <mssgle:LineSegment
+                    End="-172.611111111111,28.1944444444444" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-172.611111111111,28.1944444444444"
+                    Point2="-176.611111111111,28.1944444444444"
+                    Point3="-176.611111111111,32.1944444444444" />
+                  <mssgle:LineSegment
+                    End="-176.611111111111,48.8888888888889" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Orders+Products.Paths[Merge Join Output1]"
+          TopLeft="320,48.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="63.111111111111,38.5"
+              Start="0,0"
+              End="63.111111111111,31">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.25"
+                    Point2="0,19.25"
+                    Point3="4,19.25" />
+                  <mssgle:LineSegment
+                    End="59.111111111111,19.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="59.111111111111,19.25"
+                    Point2="63.111111111111,19.25"
+                    Point3="63.111111111111,23.25" />
+                  <mssgle:LineSegment
+                    End="63.111111111111,31" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Orders+Products.Paths[Merge Join Output]"
+          TopLeft="411.222222222222,260.888888888889">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.4444444444444"
+              Start="0,0"
+              End="0,25.9444444444444">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.9444444444444" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Orders+Products.Paths[Lookup No Match Output]"
+          TopLeft="556,535">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-133.333333333333,0"
+              Start="0,0"
+              End="-125.833333333333,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-125.833333333333,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-18.1494140625,36.4078233506945,36.298828125,9.5732421875"
+              BoundingBox="-148.313404947917,5,111.6127734375,11.609375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Orders+Products.Paths[Lookup Match Output]"
+          TopLeft="671,535.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="106,0"
+              Start="0,0"
+              End="98.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="98.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-18.82673828125,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Orders+Products.Paths[Derived Column Output]"
+          TopLeft="613.777777777778,485.694444444444">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.305555555556"
+              Start="0,0"
+              End="0,19.805555555556">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.805555555556" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
@@ -4208,7 +4172,7 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Sort Output5]"
+          Id="Package\Load Orders+Products.Paths[Sort Output4]"
           TopLeft="344.5,144.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4244,7 +4208,7 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Sort Output2]"
+          Id="Package\Load Orders+Products.Paths[Sort Output1]"
           TopLeft="130,146.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4296,8 +4260,8 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
             <s:String>Package\Load Orders+Products\Sort 1</s:String>
             <s:String>Package\Load Orders+Products.Paths[OLE DB Source Output3]</s:String>
             <s:String>Package\Load Orders+Products.Paths[OLE DB Source Output4]</s:String>
-            <s:String>Package\Load Orders+Products.Paths[Sort Output5]</s:String>
-            <s:String>Package\Load Orders+Products.Paths[Sort Output2]</s:String>
+            <s:String>Package\Load Orders+Products.Paths[Sort Output4]</s:String>
+            <s:String>Package\Load Orders+Products.Paths[Sort Output1]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
         <NodeLayout
@@ -4381,7 +4345,7 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
           Id="Package\Load Orders+Products\Merge Join 2"
           TopLeft="166.5,219.5" />
         <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Sort Output6]"
+          Id="Package\Load Orders+Products.Paths[Sort Output5]"
           TopLeft="90.5,130.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4417,7 +4381,7 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Sort Output]"
+          Id="Package\Load Orders+Products.Paths[Sort Output7]"
           TopLeft="371.5,141.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4469,95 +4433,15 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
             <s:String>Package\Load Orders+Products.Paths[OLE DB Source Output2]</s:String>
             <s:String>Package\Load Orders+Products.Paths[OLE DB Source Output]</s:String>
             <s:String>Package\Load Orders+Products\Merge Join 2</s:String>
-            <s:String>Package\Load Orders+Products.Paths[Sort Output6]</s:String>
-            <s:String>Package\Load Orders+Products.Paths[Sort Output]</s:String>
+            <s:String>Package\Load Orders+Products.Paths[Sort Output5]</s:String>
+            <s:String>Package\Load Orders+Products.Paths[Sort Output7]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
-        <NodeLayout
-          Size="115,42"
-          Id="Package\Load Orders+Products\Lookup"
-          TopLeft="556,513" />
-        <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Derived Column Output]"
-          TopLeft="613.777777777778,485.694444444444">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,27.305555555556"
-              Start="0,0"
-              End="0,19.805555555556">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.805555555556" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-27.8544140625,4.281195746528,55.708828125,11.2431640625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Lookup No Match Output]"
-          TopLeft="556,535">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-133.333333333333,0"
-              Start="0,0"
-              End="-125.833333333333,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-125.833333333333,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-148.313404947917,5,170.7934765625,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="173,42"
-          Id="Package\Load Orders+Products\OLE DB Command"
-          TopLeft="777,516" />
-        <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Lookup Match Output]"
-          TopLeft="671,535.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="106,0"
-              Start="0,0"
-              End="98.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="98.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-18.82673828125,5,136.1534765625,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Orders+Products\ProductSubCategory">
+    design-time-name="Package\Load Orders+Products\SalesOrderHeader">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4583,46 +4467,7 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Orders+Products\Summary">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Orders+Products\SalesOrderHeader">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load Orders+Products\ProductCategory">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Orders+Products\Product">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4645,7 +4490,7 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[Summary]</Value>
+          type="q3:string"></Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -4654,6 +4499,45 @@ where [refTable].[UnitPrice] = ? and [refTable].[OrderQty] = ? and [refTable].[T
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Orders+Products\Product">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Orders+Products\Summary">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Orders+Products\ProductSubCategory">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
