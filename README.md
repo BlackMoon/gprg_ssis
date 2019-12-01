@@ -10,5 +10,9 @@ Projects:
 Each project consists of 2 packages: 
 
 Package.dtsx - common package
+
+
 Package_tuning.dtsx - package with performance improvement. 
+
+
 It has another [defaultBufferMaxRows], [defaultBufferSize] values. Data Flow Step is modified as well.
