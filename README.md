@@ -15,4 +15,4 @@ Package.dtsx - common package
 Package_tuning.dtsx - package with performance improvement. 
 
 
-It has another [defaultBufferMaxRows], [defaultBufferSize] values. Data Flow Step is modified as well.
+It has another [defaultBufferMaxRows], [defaultBufferSize] values. Data Flow Task is modified as well.
