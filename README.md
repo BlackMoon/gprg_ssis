@@ -1,2 +1,2 @@
 # gprg_ssis
-SSIS packages
+MS SQL Server Integration Services packages samples
