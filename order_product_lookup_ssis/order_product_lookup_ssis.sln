@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "order_product_lookup_ssis", "order_product_lookup_ssis.dtproj", "{1774F48D-4B77-4F55-85EE-8F90DFE49CA4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1774F48D-4B77-4F55-85EE-8F90DFE49CA4}.Development|Default.ActiveCfg = Development
+		{1774F48D-4B77-4F55-85EE-8F90DFE49CA4}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FDB1C99F-9C9F-4E3F-9161-EEAB2A408325}
+	EndGlobalSection
+EndGlobal

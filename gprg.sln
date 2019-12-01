@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "order_product_lookup_ssis", "order_product_lookup_ssis\order_product_lookup_ssis.dtproj", "{793BE90A-1753-4E71-9A70-85C6AADBF2E1}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "order_product_ssis", "order_product_ssis\order_product_ssis.dtproj", "{247A61CA-0D9D-4BD6-8084-31E6ABDEEC2B}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "weather_data_ssis", "weather_data_ssis\weather_data_ssis.dtproj", "{7889333E-8255-452B-A71B-43992C247018}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{793BE90A-1753-4E71-9A70-85C6AADBF2E1}.Development|Default.ActiveCfg = Development
+		{793BE90A-1753-4E71-9A70-85C6AADBF2E1}.Development|Default.Build.0 = Development
+		{247A61CA-0D9D-4BD6-8084-31E6ABDEEC2B}.Development|Default.ActiveCfg = Development
+		{247A61CA-0D9D-4BD6-8084-31E6ABDEEC2B}.Development|Default.Build.0 = Development
+		{7889333E-8255-452B-A71B-43992C247018}.Development|Default.ActiveCfg = Development
+		{7889333E-8255-452B-A71B-43992C247018}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A23B0B26-E2EA-46CB-A387-9C42281F9C1E}
+	EndGlobalSection
+EndGlobal
