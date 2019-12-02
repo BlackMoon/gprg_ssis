@@ -11,32 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="63"
-  DTS:VersionGUID="{E031AFF9-DC3B-4CFC-A0E9-22C8504D6191}">
+  DTS:VersionBuild="65"
+  DTS:VersionGUID="{FB0A0EC2-7365-4433-BBD4-F1682F4B33ED}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{A04027A1-5D99-4A69-8B9A-EBD7E5D349B8}"
-      DTS:ObjectName="ROMANOV10P1.AdventureWorks2017">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=ROMANOV10P1;Initial Catalog=AdventureWorks2017;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{D710A34A-1931-4E25-AF02-C6552B597691}"
-      DTS:ObjectName="ROMANOV10P1.AdventureWorksReporting2017">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=ROMANOV10P1;Initial Catalog=AdventureWorksReporting2017;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -122,8 +100,8 @@ FROM
               <connections>
                 <connection
                   refId="Package\Load Orders+Products\Order+Products.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
-                  connectionManagerRefId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
+                  connectionManagerID="{7F4D04C6-70BC-4819-91A6-87A57BEC13BE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source_ConnectionManager]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -389,8 +367,8 @@ FROM
               <connections>
                 <connection
                   refId="Package\Load Orders+Products\Summary.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
-                  connectionManagerRefId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
+                  connectionManagerID="{1bfc1f22-fe90-49b1-b19e-ae31154c6c19}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination_ConnectionManager]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -552,7 +530,7 @@ FROM
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{D710A34A-1931-4E25-AF02-C6552B597691}"
+          SQLTask:Connection="{1bfc1f22-fe90-49b1-b19e-ae31154c6c19}"
           SQLTask:SqlStatementSource="TRUNCATE Table [AdventureWorksReporting2017].[dbo].[Summary]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>

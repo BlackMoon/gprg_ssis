@@ -11,52 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package_tuning"
   DTS:PackageType="5"
-  DTS:VersionBuild="33"
-  DTS:VersionGUID="{8848DE43-018B-4678-8D53-D64D3AE6BD8C}">
+  DTS:VersionBuild="38"
+  DTS:VersionGUID="{8A649A66-5A1E-413B-9DE0-01509DA1D50A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{F1F4D210-DC6D-4AD1-9819-84C0D3F5D5B9}"
-      DTS:ObjectName="ROMANOV10P1.AdventureWorks2017">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=ROMANOV10P1;Initial Catalog=AdventureWorks2017;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017 1]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{A04027A1-5D99-4A69-8B9A-EBD7E5D349B8}"
-      DTS:ObjectName="ROMANOV10P1.AdventureWorks2017 1">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=ROMANOV10P1;Initial Catalog=AdventureWorks2017;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{08804C9D-F1F7-4B5F-863C-349C64647CBE}"
-      DTS:ObjectName="ROMANOV10P1.AdventureWorksReporting2017">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=ROMANOV10P1;Initial Catalog=AdventureWorksReporting2017;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[ROMANOV10P1.AdwentureWorksReporting2017]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{6F0DFE52-5A3F-4A7C-B3CC-44FE0280B61D}"
-      DTS:ObjectName="ROMANOV10P1.AdwentureWorksReporting2017">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=ROMANOV10P1;Initial Catalog=AdwentureWorksReporting2017;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -98,7 +56,7 @@ FROM            Summary</property>
                   name="SqlCommandParam"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT        SalesOrderId, ProductNumber
 FROM            Summary) [refTable]
-where [refTable].[ProductNumber] = ?</property>
+where [refTable].[SalesOrderId] = ? and [refTable].[ProductNumber] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -134,7 +92,7 @@ where [refTable].[ProductNumber] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load Orders+Products\Orders+Products.Outputs[OLE DB Source Output].Columns[ProductNumber]};</property>
+                  name="ParameterMap">#{Package\Load Orders+Products\Orders+Products.Outputs[OLE DB Source Output].Columns[SalesOrderID]};#{Package\Load Orders+Products\Orders+Products.Outputs[OLE DB Source Output].Columns[ProductNumber]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -147,8 +105,8 @@ where [refTable].[ProductNumber] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Orders+Products\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
-                  connectionManagerRefId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
+                  connectionManagerID="{5A040865-E509-4485-AC54-0DC2DCC30650}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination_ConnectionManager]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -157,6 +115,22 @@ where [refTable].[ProductNumber] = ?</property>
                   refId="Package\Load Orders+Products\Lookup.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Orders+Products\Lookup.Inputs[Lookup Input].Columns[SalesOrderID]"
+                      cachedDataType="i4"
+                      cachedName="SalesOrderID"
+                      lineageId="Package\Load Orders+Products\Orders+Products.Outputs[OLE DB Source Output].Columns[SalesOrderID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">SalesOrderId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
                     <inputColumn
                       refId="Package\Load Orders+Products\Lookup.Inputs[Lookup Input].Columns[ProductNumber]"
                       cachedDataType="wstr"
@@ -185,37 +159,6 @@ where [refTable].[ProductNumber] = ?</property>
                   exclusionGroup="1"
                   name="Lookup Match Output"
                   synchronousInputId="Package\Load Orders+Products\Lookup.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load Orders+Products\Lookup.Outputs[Lookup Match Output].Columns[ProductNumber]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Copy Column"
-                      length="25"
-                      lineageId="Package\Load Orders+Products\Lookup.Outputs[Lookup Match Output].Columns[ProductNumber]"
-                      name="ProductNumber"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">ProductNumber</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Load Orders+Products\Lookup.Outputs[Lookup Match Output].Columns[SalesOrderId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Load Orders+Products\Lookup.Outputs[Lookup Match Output].Columns[SalesOrderId]"
-                      name="SalesOrderId"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">SalesOrderId</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
@@ -277,8 +220,8 @@ where [refTable].[ProductNumber] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Orders+Products\OLE DB Command.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
-                  connectionManagerRefId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
+                  connectionManagerID="{5A040865-E509-4485-AC54-0DC2DCC30650}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination_ConnectionManager]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -327,7 +270,7 @@ where [refTable].[ProductNumber] = ?</property>
                       cachedLength="25"
                       cachedName="ProductNumber"
                       externalMetadataColumnId="Package\Load Orders+Products\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@productNumber]"
-                      lineageId="Package\Load Orders+Products\Lookup.Outputs[Lookup Match Output].Columns[ProductNumber]" />
+                      lineageId="Package\Load Orders+Products\Orders+Products.Outputs[OLE DB Source Output].Columns[ProductNumber]" />
                     <inputColumn
                       refId="Package\Load Orders+Products\OLE DB Command.Inputs[OLE DB Command Input].Columns[ProductCategory]"
                       cachedDataType="wstr"
@@ -536,8 +479,8 @@ FROM
               <connections>
                 <connection
                   refId="Package\Load Orders+Products\Orders+Products.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017 1]"
-                  connectionManagerRefId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017 1]"
+                  connectionManagerID="{9EC292A2-75A3-4818-AAA5-74CCDEE0D954}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source_ConnectionManager]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -803,8 +746,8 @@ FROM
               <connections>
                 <connection
                   refId="Package\Load Orders+Products\Summary.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
-                  connectionManagerRefId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
+                  connectionManagerID="{5A040865-E509-4485-AC54-0DC2DCC30650}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination_ConnectionManager]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -990,6 +933,10 @@ FROM
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="126,42"
+          Id="Package\Load Orders+Products\Summary"
+          TopLeft="296.666666666667,515" />
+        <NodeLayout
           Size="115,42"
           Id="Package\Load Orders+Products\Lookup"
           TopLeft="561,348" />
@@ -998,9 +945,43 @@ FROM
           Id="Package\Load Orders+Products\OLE DB Command"
           TopLeft="777,516" />
         <NodeLayout
-          Size="126,42"
-          Id="Package\Load Orders+Products\Summary"
-          TopLeft="296.666666666667,515" />
+          Size="162,42"
+          Id="Package\Load Orders+Products\Orders+Products"
+          TopLeft="585,233" />
+        <EdgeLayout
+          Id="Package\Load Orders+Products.Paths[OLE DB Source Output]"
+          TopLeft="666,275">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-47.5,73"
+              Start="0,0"
+              End="-47.5,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.5"
+                    Point2="0,36.5"
+                    Point3="-4,36.5" />
+                  <mssgle:LineSegment
+                    End="-43.5,36.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-43.5,36.5"
+                    Point2="-47.5,36.5"
+                    Point3="-47.5,40.5" />
+                  <mssgle:LineSegment
+                    End="-47.5,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Orders+Products.Paths[Lookup No Match Output]"
           TopLeft="600.666666666667,390">
@@ -1069,51 +1050,26 @@ FROM
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="65.3919466145833,56.4373927958833,96.3827734375,11.609375"
+              BoundingBox="65.3919466145835,56.4373927958833,96.3827734375,11.609375"
               RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="162,42"
-          Id="Package\Load Orders+Products\Orders+Products"
-          TopLeft="585,233" />
-        <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[OLE DB Source Output]"
-          TopLeft="666,275">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-47.5,73"
-              Start="0,0"
-              End="-47.5,65.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,32.5"
-                    Point2="0,36.5"
-                    Point3="-4,36.5" />
-                  <mssgle:LineSegment
-                    End="-43.5,36.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-43.5,36.5"
-                    Point2="-47.5,36.5"
-                    Point3="-47.5,40.5" />
-                  <mssgle:LineSegment
-                    End="-47.5,65.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Orders+Products\Summary">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Orders+Products\Lookup">
     <Properties>
@@ -1134,19 +1090,6 @@ FROM
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Orders+Products\Summary">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
