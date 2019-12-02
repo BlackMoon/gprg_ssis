@@ -11,42 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="23"
-  DTS:VersionGUID="{03490CB2-FBB7-4318-96A0-31E87AC96454}">
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{CB2E1010-4D1E-4E64-ADF3-BF38948C474C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{9EC292A2-75A3-4818-AAA5-74CCDEE0D954}"
-      DTS:ObjectName="ROMANOV10P1.AdventureWorks2017">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=ROMANOV10P1;Initial Catalog=AdventureWorks2017;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{5A040865-E509-4485-AC54-0DC2DCC30650}"
-      DTS:ObjectName="ROMANOV10P1.AdventureWorksReporting2017">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=ROMANOV10P1;Initial Catalog=AdventureWorksReporting2017;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[ROMANOV10P1.AdwentureWorksReporting2017]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{87DC227F-9763-4374-8905-41AAAF5A4A50}"
-      DTS:ObjectName="ROMANOV10P1.AdwentureWorksReporting2017">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=ROMANOV10P1;Initial Catalog=AdwentureWorksReporting2017;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -222,8 +190,8 @@ where [refTable].[ProductNumber] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Orders+Products\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
-                  connectionManagerRefId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
+                  connectionManagerID="{5A040865-E509-4485-AC54-0DC2DCC30650}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination_ConnectionManager 1]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -987,8 +955,8 @@ where [refTable].[ProductNumber] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Orders+Products\OLE DB Command.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
-                  connectionManagerRefId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
+                  connectionManagerID="{5A040865-E509-4485-AC54-0DC2DCC30650}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination_ConnectionManager 1]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1231,8 +1199,8 @@ where [refTable].[ProductNumber] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Orders+Products\Product.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
-                  connectionManagerRefId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
+                  connectionManagerID="{9EC292A2-75A3-4818-AAA5-74CCDEE0D954}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source_ConnectionManager 1]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1490,8 +1458,8 @@ where [refTable].[ProductNumber] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Orders+Products\ProductCategory.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
-                  connectionManagerRefId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
+                  connectionManagerID="{9EC292A2-75A3-4818-AAA5-74CCDEE0D954}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source_ConnectionManager 1]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1625,8 +1593,8 @@ where [refTable].[ProductNumber] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Orders+Products\ProductSubCategory.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
-                  connectionManagerRefId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
+                  connectionManagerID="{9EC292A2-75A3-4818-AAA5-74CCDEE0D954}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source_ConnectionManager 1]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1778,8 +1746,8 @@ where [refTable].[ProductNumber] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Orders+Products\SalesOrderDetail.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
-                  connectionManagerRefId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
+                  connectionManagerID="{9EC292A2-75A3-4818-AAA5-74CCDEE0D954}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source_ConnectionManager 1]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2045,8 +2013,8 @@ where [refTable].[ProductNumber] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Orders+Products\SalesOrderHeader.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
-                  connectionManagerRefId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorks2017]"
+                  connectionManagerID="{9EC292A2-75A3-4818-AAA5-74CCDEE0D954}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source_ConnectionManager 1]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3434,8 +3402,8 @@ where [refTable].[ProductNumber] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Orders+Products\Summary.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
-                  connectionManagerRefId="Package.ConnectionManagers[ROMANOV10P1.AdventureWorksReporting2017]"
+                  connectionManagerID="{5A040865-E509-4485-AC54-0DC2DCC30650}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination_ConnectionManager 1]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3615,14 +3583,14 @@ where [refTable].[ProductNumber] = ?</property>
               startId="Package\Load Orders+Products\Merge Join 3.Outputs[Merge Join Output]" />
             <path
               refId="Package\Load Orders+Products.Paths[OLE DB Source Output4]"
-              endId="Package\Load Orders+Products\Sort 1.Inputs[Sort Input]"
+              endId="Package\Load Orders+Products\Sort 6.Inputs[Sort Input]"
               name="OLE DB Source Output"
-              startId="Package\Load Orders+Products\ProductSubCategory.Outputs[OLE DB Source Output]" />
+              startId="Package\Load Orders+Products\SalesOrderHeader.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Load Orders+Products.Paths[OLE DB Source Output3]"
-              endId="Package\Load Orders+Products\Sort.Inputs[Sort Input]"
+              endId="Package\Load Orders+Products\Sort 2.Inputs[Sort Input]"
               name="OLE DB Source Output"
-              startId="Package\Load Orders+Products\ProductCategory.Outputs[OLE DB Source Output]" />
+              startId="Package\Load Orders+Products\Product.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Load Orders+Products.Paths[OLE DB Source Output2]"
               endId="Package\Load Orders+Products\Sort 5.Inputs[Sort Input]"
@@ -3630,14 +3598,14 @@ where [refTable].[ProductNumber] = ?</property>
               startId="Package\Load Orders+Products\SalesOrderDetail.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Load Orders+Products.Paths[OLE DB Source Output1]"
-              endId="Package\Load Orders+Products\Sort 2.Inputs[Sort Input]"
+              endId="Package\Load Orders+Products\Sort.Inputs[Sort Input]"
               name="OLE DB Source Output"
-              startId="Package\Load Orders+Products\Product.Outputs[OLE DB Source Output]" />
+              startId="Package\Load Orders+Products\ProductCategory.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Load Orders+Products.Paths[OLE DB Source Output]"
-              endId="Package\Load Orders+Products\Sort 6.Inputs[Sort Input]"
+              endId="Package\Load Orders+Products\Sort 1.Inputs[Sort Input]"
               name="OLE DB Source Output"
-              startId="Package\Load Orders+Products\SalesOrderHeader.Outputs[OLE DB Source Output]" />
+              startId="Package\Load Orders+Products\ProductSubCategory.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Load Orders+Products.Paths[Sort Output]"
               endId="Package\Load Orders+Products\Merge Join 3.Inputs[Merge Join Left Input]"
@@ -3876,7 +3844,7 @@ where [refTable].[ProductNumber] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[OLE DB Source Output1]"
+          Id="Package\Load Orders+Products.Paths[OLE DB Source Output3]"
           TopLeft="706.916666666667,52">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4100,7 +4068,7 @@ where [refTable].[ProductNumber] = ?</property>
           Id="Package\Load Orders+Products\Sort 1"
           TopLeft="290.5,102.5" />
         <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[OLE DB Source Output3]"
+          Id="Package\Load Orders+Products.Paths[OLE DB Source Output1]"
           TopLeft="86.5,64.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4136,7 +4104,7 @@ where [refTable].[ProductNumber] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[OLE DB Source Output4]"
+          Id="Package\Load Orders+Products.Paths[OLE DB Source Output]"
           TopLeft="308,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4258,8 +4226,8 @@ where [refTable].[ProductNumber] = ?</property>
             <s:String>Package\Load Orders+Products\Merge Join</s:String>
             <s:String>Package\Load Orders+Products\Sort</s:String>
             <s:String>Package\Load Orders+Products\Sort 1</s:String>
-            <s:String>Package\Load Orders+Products.Paths[OLE DB Source Output3]</s:String>
-            <s:String>Package\Load Orders+Products.Paths[OLE DB Source Output4]</s:String>
+            <s:String>Package\Load Orders+Products.Paths[OLE DB Source Output1]</s:String>
+            <s:String>Package\Load Orders+Products.Paths[OLE DB Source Output]</s:String>
             <s:String>Package\Load Orders+Products.Paths[Sort Output4]</s:String>
             <s:String>Package\Load Orders+Products.Paths[Sort Output1]</s:String>
           </GroupLayout.ChildrenIds>
@@ -4305,7 +4273,7 @@ where [refTable].[ProductNumber] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[OLE DB Source Output]"
+          Id="Package\Load Orders+Products.Paths[OLE DB Source Output4]"
           TopLeft="354,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4431,7 +4399,7 @@ where [refTable].[ProductNumber] = ?</property>
             <s:String>Package\Load Orders+Products\Sort 5</s:String>
             <s:String>Package\Load Orders+Products\Sort 6</s:String>
             <s:String>Package\Load Orders+Products.Paths[OLE DB Source Output2]</s:String>
-            <s:String>Package\Load Orders+Products.Paths[OLE DB Source Output]</s:String>
+            <s:String>Package\Load Orders+Products.Paths[OLE DB Source Output4]</s:String>
             <s:String>Package\Load Orders+Products\Merge Join 2</s:String>
             <s:String>Package\Load Orders+Products.Paths[Sort Output5]</s:String>
             <s:String>Package\Load Orders+Products.Paths[Sort Output7]</s:String>
@@ -4440,32 +4408,6 @@ where [refTable].[ProductNumber] = ?</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Orders+Products\SalesOrderHeader">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Orders+Products\SalesOrderDetail">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Orders+Products\ProductCategory">
     <Properties>
@@ -4476,29 +4418,6 @@ where [refTable].[ProductNumber] = ?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Orders+Products\Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string"></Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -4530,6 +4449,55 @@ where [refTable].[ProductNumber] = ?</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Orders+Products\ProductSubCategory">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Orders+Products\SalesOrderHeader">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Orders+Products\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Orders+Products\SalesOrderDetail">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package_tuning"
   DTS:PackageType="5"
-  DTS:VersionBuild="38"
-  DTS:VersionGUID="{8A649A66-5A1E-413B-9DE0-01509DA1D50A}">
+  DTS:VersionBuild="39"
+  DTS:VersionGUID="{94615BC6-2BD3-4059-B413-95818E695B24}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -106,7 +106,7 @@ where [refTable].[SalesOrderId] = ? and [refTable].[ProductNumber] = ?</property
                 <connection
                   refId="Package\Load Orders+Products\Lookup.Connections[OleDbConnection]"
                   connectionManagerID="{5A040865-E509-4485-AC54-0DC2DCC30650}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Destination_ConnectionManager]"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination_ConnectionManager 1]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -221,7 +221,7 @@ where [refTable].[SalesOrderId] = ? and [refTable].[ProductNumber] = ?</property
                 <connection
                   refId="Package\Load Orders+Products\OLE DB Command.Connections[OleDbConnection]"
                   connectionManagerID="{5A040865-E509-4485-AC54-0DC2DCC30650}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Destination_ConnectionManager]"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination_ConnectionManager 1]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -480,7 +480,7 @@ FROM
                 <connection
                   refId="Package\Load Orders+Products\Orders+Products.Connections[OleDbConnection]"
                   connectionManagerID="{9EC292A2-75A3-4818-AAA5-74CCDEE0D954}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Source_ConnectionManager]"
+                  connectionManagerRefId="Project.ConnectionManagers[Source_ConnectionManager 1]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -747,7 +747,7 @@ FROM
                 <connection
                   refId="Package\Load Orders+Products\Summary.Connections[OleDbConnection]"
                   connectionManagerID="{5A040865-E509-4485-AC54-0DC2DCC30650}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Destination_ConnectionManager]"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination_ConnectionManager 1]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -933,6 +933,10 @@ FROM
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="162,42"
+          Id="Package\Load Orders+Products\Orders+Products"
+          TopLeft="585,233" />
+        <NodeLayout
           Size="126,42"
           Id="Package\Load Orders+Products\Summary"
           TopLeft="296.666666666667,515" />
@@ -944,10 +948,42 @@ FROM
           Size="173,42"
           Id="Package\Load Orders+Products\OLE DB Command"
           TopLeft="777,516" />
-        <NodeLayout
-          Size="162,42"
-          Id="Package\Load Orders+Products\Orders+Products"
-          TopLeft="585,233" />
+        <EdgeLayout
+          Id="Package\Load Orders+Products.Paths[Lookup Match Output]"
+          TopLeft="636.333333333333,390">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="227.166666666667,126"
+              Start="0,0"
+              End="227.166666666667,118.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.4373927958833" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,47.4373927958833"
+                    Point2="0,51.4373927958833"
+                    Point3="4,51.4373927958833" />
+                  <mssgle:LineSegment
+                    End="223.166666666667,51.4373927958833" />
+                  <mssgle:CubicBezierSegment
+                    Point1="223.166666666667,51.4373927958833"
+                    Point2="227.166666666667,51.4373927958833"
+                    Point3="227.166666666667,55.4373927958833" />
+                  <mssgle:LineSegment
+                    End="227.166666666667,118.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="65.3919466145835,56.4373927958833,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Orders+Products.Paths[OLE DB Source Output]"
           TopLeft="666,275">
@@ -1018,45 +1054,17 @@ FROM
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Orders+Products.Paths[Lookup Match Output]"
-          TopLeft="636.333333333333,390">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="227.166666666667,126"
-              Start="0,0"
-              End="227.166666666667,118.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,47.4373927958833" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,47.4373927958833"
-                    Point2="0,51.4373927958833"
-                    Point3="4,51.4373927958833" />
-                  <mssgle:LineSegment
-                    End="223.166666666667,51.4373927958833" />
-                  <mssgle:CubicBezierSegment
-                    Point1="223.166666666667,51.4373927958833"
-                    Point2="227.166666666667,51.4373927958833"
-                    Point3="227.166666666667,55.4373927958833" />
-                  <mssgle:LineSegment
-                    End="227.166666666667,118.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="65.3919466145835,56.4373927958833,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Orders+Products\Orders+Products">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Orders+Products\Summary">
     <Properties>
@@ -1088,14 +1096,6 @@ FROM
         <Value
           type="q4:int">0</Value>
       </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Orders+Products\Orders+Products">
-    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
