@@ -25,10 +25,12 @@ Projects:
 - Package_tuning has [defaultBufferMaxRows] = 200000 and [defaultBufferSize]= 50485760. Total row count per task ~121K,
 thus defaultBufferMaxRows should be a bit bigger to allow handle all data per one reading operation. It has modified Data Flow Task to reduce Data Flow steps and fetch as much data as possible from DB.
 
+
     Weather_Data_Ssis 
 
 - Package that copies the data from dbo.weatherdata and transforms sunset/sunrise values
 - Package_tuning has modified Data Flow Task, e.g. DateTime Transformation completely goes from Source SQL query
+
 
     Order_Product_Lookup_Ssis
 
