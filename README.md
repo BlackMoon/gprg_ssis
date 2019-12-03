@@ -9,6 +9,7 @@ Projects:
 
 
 
+
 Each project consists of 2 packages:
 
 Package.dtsx - common package
@@ -18,6 +19,7 @@ Package_tuning.dtsx - package with performance improvement.
 Package_tuning.dtsx has another [defaultBufferMaxRows], [defaultBufferSize] values. Data Flow Task is modified as well.
 
 All projects use 2 Project Level Parameters: Source_ConnectionString and Destination_ConnectionString
+
 
 
 
